@@ -1,12 +1,14 @@
 // 实现基本功能
 
 #include<stdafx.h>
+FILE *stream;
+errno_t err;
 
 int CountCharacter(char file[])
 {
 	int character_num = 0;
 	char ch;
-	freopen(file, "r", stdin);
+	err = freopen_s(&stream, file, "r", stdin);
 	while ((ch = getchar()) != EOF)
 	{
 		if (ch != ' ' && ch != '\n' &&ch != '\t')
@@ -23,7 +25,7 @@ int CountWord(char file[])
 	int word_num = 0;
 	int word = 0;
 	char ch;
-	freopen(file, "r", stdin);
+	err = freopen_s(&stream, file, "r", stdin);
 	while ((ch = getchar()) != EOF)
 	{
 		if ((ch >= 'a'&&ch <= 'z') || (ch >= 'A'&&ch <= 'Z') || ch == '_')
@@ -47,7 +49,7 @@ int CountLine(char file[])
 {
 	int line_num = 0;
 	char ch;
-	freopen(file, "r", stdin);
+	err = freopen_s(&stream, file, "r", stdin);
 	while ((ch = getchar()) != EOF)
 	{
 		if (ch == '\n')
